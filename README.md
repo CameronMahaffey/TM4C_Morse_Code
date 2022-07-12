@@ -2,10 +2,9 @@
 Created using Keil uVision 4.7
 
 
-Using a Tiva TM4C123GH6PM launchpad, characters are sent to the microcontroller using UART0 and encoded into Morse Code.
-The output source for the Morse code can be either a buzzer, headphones, or be transmitted through a 433MHz transmitter.
-The sound pitch and speed in words per minute can also be selected on startup.
-Watch the video below for a demo or refer to the images in the folder.
+Using a Tiva TM4C123GH6PM launchpad, characters are sent to the microcontroller using UART0 and encoded into Morse Code. The output source for the Morse code can be either a buzzer, headphones, or be transmitted through a 433MHz transmitter. The sound pitch and speed in words per minute can also be selected on startup. Watch the video below for a demo or refer to the images in the folder.
+
+Program Flow: Wait for characters to to sent through UART, add characters to buffer and onto LCD. If character is enter key, prepare buffer for transmission by removing extra spaces between words and at the front of buffer. If buffer is empty, don't transmit anything and go back to waiting for characters through UART, else begin tranmission. Once finished, Clear the LCD and buffer, then repeat.
 
 Video Link -- Soon
 
@@ -49,6 +48,10 @@ Video Link -- Soon
 ## UART0
 Pins PA0 and PA1 are connected through the usb cable to the PC to form a virual serial COM port. Using a software like PuTTY, we can communicate between the PC and the microcontroller using the UART protocol. Text is sent to the uC through the virtual COM port and echoed back to the screen. Certain keys, like enter, backspace, [, ], and esc, perform other actions. The function UART_InChar() polls the Rx FIFO Empty register until data is present, then it receives the character. Likewise, the UART_OutChar() function checks to see if the Tx FIFO Full register is full and waits for it to make space before sending data back to the PC.
 
+UART Settings: 115,200 baud rate, 8 data bits, 1 stop bit, no parity.
+
+In PuTTY - change the backspace key to Control-H mode. Use device manager to find out which COM port your uC is connected to.
+
 ## DAC
 The 6-bit DAC is created using Port E on the microcontroller. Pins PE0 - PE5 are connected to resisters such that each resistor value is twice the resistance as the previous one. PE5 is connected to 3kOhms, PE4 to 6kOhms, PE3 to 12kOhms, PE2 to 24kOhms, PE1 to 48kOhms, and PE0 to 96kOhms. The other end of each resistor is connected in parallel. In this way, there is a linear relationship between each level of the DAC and the voltage output. With 6 bits, there are 64 discrete levels. With 3.3V being the maximum voltage, this gives us a resolution of 3.3/64 = 51.6mV. Using the DAC, we can output a 6-bit sine wave to the headphones.
 
@@ -62,7 +65,8 @@ Each character goes through the function character_To_Morse(char), which uses a 
 
 - dot - base element
 - dash - 3 dots
-- space b/t characters - 1 dot
+- space b/t elements in character - 1 dot
+- space b/t characters in word - 3 dot
 - space b/t words - 7 dots
 
 ## Delay
