@@ -6,7 +6,7 @@ Using a Tiva TM4C123GH6PM launchpad, characters are sent to the microcontroller 
 
 Program Flow: Wait for characters to to sent through UART, add characters to buffer and onto LCD. If character is enter key, prepare buffer for transmission by removing extra spaces between words and at the front of buffer. If buffer is empty, don't transmit anything and go back to waiting for characters through UART, else begin tranmission. Once finished, Clear the LCD and buffer, then repeat.
 
-Video Link -- Soon
+Video Link -- https://www.youtube.com/watch?v=SWin6S2PAlA
 
 ## TOC:
 1. uC Pinout
