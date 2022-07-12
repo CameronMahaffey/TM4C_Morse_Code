@@ -8,6 +8,17 @@ Watch the video below for a demo or refer to the images in the folder.
 
 Video Link -- Soon
 
+## TOC:
+1. uC Pinout
+2. UART0
+3. DAC
+4. PLL
+5. Morse
+6. LCD
+7. Delay
+8. Menu
+
+
 ## uC Pinout:
 
 - Port A - UART Tx and Rx
