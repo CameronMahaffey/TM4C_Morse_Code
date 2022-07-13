@@ -40,8 +40,8 @@ void Sound_Init(void){
 
 // Change Systick period to start sound output
 void Sound_Tone(unsigned long period){
-		if (mode != 3){		// if TX or Buzzer mode
-		period *= 128;		// headphones need systick to be 128 times faster for same Hz as buzzer/tx mode
+		if (mode == 3){		// if headphones mode
+		period /= 64;		// headphones need systick to be 64 times faster for same Hz as buzzer/tx mode
 		}
 	// this routine sets the RELOAD and makes SysTick handler operable
 		NVIC_ST_RELOAD_R = period-1;// set reload value to period

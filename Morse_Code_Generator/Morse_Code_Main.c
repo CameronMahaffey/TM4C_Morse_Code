@@ -190,10 +190,10 @@ void Menu(void){
 	UART_OutString("Choose Frequency: 600Hz-1   800Hz-2   900Hz-3   1000Hz-4\n\r");
 	choice = UART_InChar();
 	
-	if (choice == '1') set_Freq(651);
-	else if (choice == '2') set_Freq(488);
-	else if (choice == '3') set_Freq(434);
-	else if (choice == '4') set_Freq(391);
+	if (choice == '1') set_Freq(41600);
+	else if (choice == '2') set_Freq(31232);
+	else if (choice == '3') set_Freq(27776);
+	else if (choice == '4') set_Freq(25088);
 	else set_Freq(651);
 	
 	Clear_LCD();
